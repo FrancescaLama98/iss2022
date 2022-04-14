@@ -1,13 +1,14 @@
 package it.unibo.radarSystem22.domain.models;
 
 import it.unibo.radarSystem22.domain.concrete.LedConcrete;
-import it.unibo.radarSystem22.domain.interfaces.ILed;
+import it.unibo.radarSystem22.domain.interfaces.*;
 import it.unibo.radarSystem22.domain.mock.LedMock;
 import it.unibo.radarSystem22.domain.mock.LedMockWithGui;
+import it.unibo.radarSystem22.domain.utils.BasicUtils;
+import it.unibo.radarSystem22.domain.utils.ColorsOut;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 
 public abstract class LedModel implements ILed{
-
 	private boolean state = false;	 
 	
 	public static ILed create() {
@@ -18,12 +19,13 @@ public abstract class LedModel implements ILed{
 	}
 	
 	public static ILed createLedMock() {
+		ColorsOut.out("DeviceFactory | createLedMock ledGui="+DomainSystemConfig.ledGui, ColorsOut.GREEN);
 		if( DomainSystemConfig.ledGui ) return LedMockWithGui.createLed();
 		else return new LedMock();
 		
 	}
 	public static ILed createLedConcrete() {
-		//ColorsOut.out("createLedConcrete", ColorsOut.BLUE);
+		ColorsOut.out("createLedConcrete", ColorsOut.BLUE);
 		return new LedConcrete();
 	}	
 	

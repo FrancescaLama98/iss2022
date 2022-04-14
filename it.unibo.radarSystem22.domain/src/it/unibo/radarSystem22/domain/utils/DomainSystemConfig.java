@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+
 public class DomainSystemConfig {
 	public static  boolean simulation    = true;
  	public static  boolean ledGui        = false;
@@ -31,23 +32,20 @@ public class DomainSystemConfig {
 	
 	public static void setTheConfiguration( String resourceName ) throws JSONException {
 		//Nella distribuzione resourceName è in una dir che include la bin  
-		
 		FileInputStream fis = null;
-		Reader reader = new InputStreamReader(fis);
-	
 		try {
-			//ColorsOut.out("%%% setTheConfiguration from file:" + resourceName);
+			ColorsOut.out("%%% setTheConfiguration from file:" + resourceName);
 			if(  fis == null ) {
  				 fis = new FileInputStream(new File(resourceName));
 			}
-	        JSONTokener tokener = new JSONTokener(reader);
+//	        JSONTokener tokener = new JSONTokener(fis);	
+			
+			Reader reader = new InputStreamReader(fis);
+			JSONTokener tokener = new JSONTokener(reader);      
 	        JSONObject object   = new JSONObject(tokener);
 	 		
 	        simulation          = object.getBoolean("simulation");
-	        
-	        
-	        webCam           = object.getBoolean("webCam");
-	        
+	        webCam           = object.getBoolean("webCam");	        
 	        sonarObservable  = object.getBoolean("sonarObservable");	
 	        sonarDelay       = object.getInt("sonarDelay");	
 	        sonarDistanceMax = object.getInt("sonarDistanceMax");	
@@ -58,7 +56,7 @@ public class DomainSystemConfig {
 	        
  	        
 		} catch (FileNotFoundException e) {
- 			//ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );
+ 			ColorsOut.outerr("setTheConfiguration ERROR " + e.getMessage() );
 		}
 
 	}	

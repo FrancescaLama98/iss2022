@@ -1,9 +1,10 @@
 package it.unibo.radarSystem22.domain;
 
-//import it.unibo.radarSystem22.domain.concrete.RadarDisplay;
+import it.unibo.radarSystem22.domain.concrete.RadarDisplay;
 import it.unibo.radarSystem22.domain.interfaces.*;
 import it.unibo.radarSystem22.domain.models.LedModel;
 import it.unibo.radarSystem22.domain.models.SonarModel;
+import it.unibo.radarSystem22.domain.utils.ColorsOut;
 import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 //import it.unibo.radarSystem22.domain.concrete.SonarConcreteObservable;
 //import it.unibo.radarSystem22.domain.mock.SonarMockObservable;
@@ -11,7 +12,7 @@ import it.unibo.radarSystem22.domain.utils.DomainSystemConfig;
 public class DeviceFactory {
 
 	public static ILed createLed() {
-		//Colors.out("DeviceFactory | createLed simulated="+RadarSystemConfig.simulation);
+		ColorsOut.out("DeviceFactory | createLed simulated="+DomainSystemConfig.simulation, ColorsOut.GREEN);
 		if( DomainSystemConfig.simulation)  {
 			return LedModel.createLedMock();
 		}else {
@@ -19,13 +20,14 @@ public class DeviceFactory {
 		}
 	}
 	public static ISonar createSonar(boolean observable) {
+		ColorsOut.out("DeviceFactory | createSonar simulated="+DomainSystemConfig.simulation, ColorsOut.GREEN);
 //		if( observable ) return createSonarObservable();
 //		else 
 			return createSonar();
 	}
 
 	public static ISonar createSonar() {
-		//Colors.out("DeviceFactory | createSonar simulated="+RadarSystemConfig.simulation);
+		//Colors.out("DeviceFactory | createSonar simulated="+DomainSystemConfig.simulation);
 		if( DomainSystemConfig.simulation)  {
 			return SonarModel.createSonarMock();
 		}else { 
@@ -42,8 +44,8 @@ public class DeviceFactory {
 //	}
 	
 	//We do not have mock for RadarGui
-	/*public static IRadarDisplay createRadarGui() {
+	public static IRadarDisplay createRadarGui() {
 		return RadarDisplay.getRadarDisplay();
 	}
-	*/
+	
 }
