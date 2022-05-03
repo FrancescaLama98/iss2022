@@ -30,6 +30,7 @@ public class UseSonarFromPc implements IApplication{
 		RadarSystemConfig.DLIMIT           = 80;
 		RadarSystemConfig.ctxServerPort    = 8756;
 		CommSystemConfig.protcolType = ProtocolType.tcp;
+		RadarSystemConfig.raspAddr = "192.168.1.9";
 	}
 	
 	protected void configure() {		
